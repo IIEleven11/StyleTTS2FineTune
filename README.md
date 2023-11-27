@@ -54,27 +54,28 @@ Ok so if you made it this far you now have your train_list.txt and val_list.txt.
 
 Ok so dataset is done. Time to train
 
-==============================================================================================
+===========================================================================================
 
 Because of the volatility of the dependencies were working with I would suggest creating a new folder to work from, entirely seperate from your dataset prep.
 
 
 ## StyleTTS2
 
-conda deactivate
-conda create --name StyleTTS2 python==3.10
-conda activate StyleTTS2
-git clone https://github.com/yl4579/StyleTTS2.git
-
-Just a reminder if you made a new folder and have vscode make sure its in the same environment as your terminal before you go any further
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 -U
+- conda deactivate
+- conda create --name StyleTTS2 python==3.10
+- conda activate StyleTTS2
+- git clone https://github.com/yl4579/StyleTTS2.git
+- pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 -U
 !That version of torch IS NOT the same as the one we used for the dataset. If you try to use the wrong version you will get an error. (WSL2)!
 
 cd StyleTTS2
+
 pip install -r requirements.txt
 
 make a folder named LibriTTS in the models folder.
+
 git-lfs clone https://huggingface.co/yl4579/StyleTTS2-LibriTTS
+
 Move epochs_2nd_00020.pth and config.yml into the models/LibriTTS folder
 
 
