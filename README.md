@@ -9,10 +9,15 @@ First, clone the repository and set up the environment:
 
 
 git clone https://github.com/IIEleven11/makeDataset.git
+
 cd makeDataset
+
 conda create --name StyleDataset python==3.10
+
 conda activate StyleDataset
+
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+
 pip3 install auditok phonemizer
 
 
