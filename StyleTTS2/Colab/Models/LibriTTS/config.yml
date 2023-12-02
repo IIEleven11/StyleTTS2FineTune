@@ -1,0 +1,21 @@
+{ASR_config: Utils/ASR/config.yml, ASR_path: Utils/ASR/epoch_00080.pth, F0_path: Utils/JDC/bst.t7,
+  PLBERT_dir: Utils/PLBERT/, batch_size: 8, data_params: {OOD_data: Data/OOD_texts.txt,
+    min_length: 50, root_path: '', train_data: Data/train_list.txt, val_data: Data/val_list.txt},
+  device: cuda, epochs_1st: 40, epochs_2nd: 25, first_stage_path: first_stage.pth,
+  load_only_params: false, log_dir: Models/LibriTTS, log_interval: 10, loss_params: {
+    TMA_epoch: 4, diff_epoch: 0, joint_epoch: 0, lambda_F0: 1.0, lambda_ce: 20.0,
+    lambda_diff: 1.0, lambda_dur: 1.0, lambda_gen: 1.0, lambda_mel: 5.0, lambda_mono: 1.0,
+    lambda_norm: 1.0, lambda_s2s: 1.0, lambda_slm: 1.0, lambda_sty: 1.0}, max_len: 300,
+  model_params: {decoder: {resblock_dilation_sizes: [[1, 3, 5], [1, 3, 5], [1, 3,
+          5]], resblock_kernel_sizes: [3, 7, 11], type: hifigan, upsample_initial_channel: 512,
+      upsample_kernel_sizes: [20, 10, 6, 4], upsample_rates: [10, 5, 3, 2]}, diffusion: {
+      dist: {estimate_sigma_data: true, mean: -3.0, sigma_data: 0.19926648961191362,
+        std: 1.0}, embedding_mask_proba: 0.1, transformer: {head_features: 64, multiplier: 2,
+        num_heads: 8, num_layers: 3}}, dim_in: 64, dropout: 0.2, hidden_dim: 512,
+    max_conv_dim: 512, max_dur: 50, multispeaker: true, n_layer: 3, n_mels: 80, n_token: 178,
+    slm: {hidden: 768, initial_channel: 64, model: microsoft/wavlm-base-plus, nlayers: 13,
+      sr: 16000}, style_dim: 128}, optimizer_params: {bert_lr: 1.0e-05, ft_lr: 1.0e-05,
+    lr: 0.0001}, preprocess_params: {spect_params: {hop_length: 300, n_fft: 2048,
+      win_length: 1200}, sr: 24000}, pretrained_model: Models/LibriTTS/epoch_2nd_00002.pth,
+  save_freq: 1, second_stage_load_pretrained: true, slmadv_params: {batch_percentage: 0.5,
+    iter: 20, max_len: 500, min_len: 400, scale: 0.01, sig: 1.5, thresh: 5}}
