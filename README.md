@@ -4,12 +4,12 @@ This repo serves the purpose of preparing a dataset and then the execution of Fi
 
 This works on WSL2 and Linux. Windows requires a bunch of other stuff, probably not worth it.
 
-##Install conda/activate environment with python 3.10
+## Install conda/activate environment with python 3.10
 
 - conda create --name dataset python==3.10
 - conda activate dataset
 
-## Install this version of torch
+## Install this version of Pytorch
 - pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 -U
 
 ## Install whisperx/phonemize and segmentation packages
@@ -19,7 +19,7 @@ This works on WSL2 and Linux. Windows requires a bunch of other stuff, probably 
 
 # You need a single 24khz .wav file. Put this file in the /StyleGuide/makeDataset folder.
 
-- whisperx /StyleGuide/makeDataset/wavfile.wav --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H  # Run this on the command line. If your GPU cant handle it there are other models you can use besides large-v2
+- whisperx /StyleGuide/makeDataset/wavfile.wav --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H  (Run this on the command line. If your GPU cant handle it there are other models you can use besides large-v2)
 
   This will give you a set of transcriptions. We want the .json.
 
@@ -29,7 +29,7 @@ This works on WSL2 and Linux. Windows requires a bunch of other stuff, probably 
 - Open whispersegmenter.py and fill out all the file paths
 - run whispersegmenter.py
 
-This will give you a path fulle of segmented audio files, a folder of bad audio it didnt like, and an output.txt
+This will give you a path full of segmented audio files, a folder of bad audio it didnt like, and an output.txt
 
 # Phonemization
 
@@ -39,7 +39,7 @@ This will give you a path fulle of segmented audio files, a folder of bad audio 
 
   This script will create the train_data.txt and val_list.txt. You should now have everything you need to fine tune.
 
-  # Fine Tuning with StyleTTS2
+# Fine Tuning with StyleTTS2
 
 - git clone https://github.com/yl4579/StyleTTS2.git
 - cd StyleTTS2
