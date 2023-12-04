@@ -49,10 +49,11 @@ This will give you a path full of segmented audio files, a folder of bad audio i
 
 - in the StyleTTS2 data folder youll see a wavs folder, delete the contents and put in your segmented wav files.
 - delete the val_list and train_list files in the Data folder and replace with yours. Keep the OOD_list.txt file you'll use it.
-- In the Configs folder you'll see a config_ft.yml open it. Edit any parameters you need. Paying attention to batch and max_len. These two are going to control how much ram is used. Its a heavy process. Drop batch size to favor max_len if you can. Supposedly a max_len of 800 proveds great results but requires a lot of ram.
+- In the Configs folder you'll see a config_ft.yml open it. Edit any parameters you need. Paying attention to batch and max_len. These two are going to control how much ram is used. Its a heavy process. Drop batch size to favor max_len if you can. Supposedly a max_len of 800 provides great results but requires a lot of ram. I was running a batch size of 2 max_len of 500 on an A6000 48gb VRAM. I couldn't squeeze out more max_len. 350 epochs took 3 days with a 56 minute dataset.
+
 - you will need to download this model clone https://huggingface.co/yl4579/StyleTTS2-LibriTTS
     - Create a folder named Models at /StyleTTS2/Models
-    - Create a folder named Models at /StyleTTS2/Models/LibriTTS     
+    - Create a folder named LibriTTS at /StyleTTS2/Models/LibriTTS     
     - put epochs_2nd_00020.pth and its config.yml in here /StyleTTS2/Models/LibriTTS/epochs_2nd_00020.pth & /StyleTTS2/Models/LibriTTS/config.yml
 
 # Run
