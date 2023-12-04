@@ -19,7 +19,8 @@ This works on WSL2 and Linux. Windows requires a bunch of other stuff, probably 
 
 # You need a single 24khz .wav file. Put this file in the /StyleGuide/makeDataset folder.
 
-- whisperx /StyleGuide/makeDataset/wavfile.wav --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H  (Run this on the command line. If your GPU cant handle it there are other models you can use besides large-v2)
+- whisperx /StyleGuide/makeDataset/wavfile.wav --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H
+    - (Run this on the command line. If your GPU cant handle it there are other models you can use besides large-v2)
 
   This will give you a set of transcriptions. We want the .json.
 
