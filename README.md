@@ -1,8 +1,8 @@
 This repo serves the purpose of preparing a dataset and then the execution of Fine tuning using the StyleTTS2 process.
 
-## 12/4/23 - I threw my config_ft.yml file in the tools folder if anyone wants to look at it for reference. 
+### 12/4/23 - A working (for my setup*) config_ft.yml file is in the tools folder if anyone needs a reference. 
 
-## 12-2-23 Rewrote Segmentation and Transcription
+### 12/2/23 Rewrote Segmentation and Transcription
 
 This works on WSL2 and Linux. Windows requires a bunch of other stuff, probably not worth it.
 
