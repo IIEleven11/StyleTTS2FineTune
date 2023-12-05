@@ -15,7 +15,7 @@ This works on WSL2 and Linux. Windows requires a bunch of other stuff, probably 
 - pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 -U
 
 ## Install whisperx/phonemize and segmentation packages
-- pip install https://github.com/m-bain/whisperX.git
+- pip install git+https://github.com/m-bain/whisperx.git
 - pip install phonemizer pydub
 
 
