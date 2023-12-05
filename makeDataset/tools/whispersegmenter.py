@@ -1,4 +1,4 @@
-## I've been playing with sample rate, the WAV2VEC2_ASR_LARGE_LV60K_960H model I'm using with the whisperx json creation was trained on 16kHz. So youll see me mirror that hear with the segmentation then upsample it to 24kHz for the StyleTTS2 fine tuning. 
+## I've been playing with sample rate, the WAV2VEC2_ASR_LARGE_LV60K_960H model I'm using with the whisperx .json creation was trained on 16kHz audio. So you'll see me mirror that hear with the segmentation and then i'll upsample it to 24kHz for the StyleTTS2 fine tuning. 
 
 import json
 from pydub import AudioSegment
