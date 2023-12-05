@@ -1,4 +1,6 @@
-This repo serves the purpose of preparing a dataset and then the execution of Fine tuning using the StyleTTS2 process.
+This repo serves the purpose of preparing a dataset and then the execution of the fine tuning using the StyleTTS2 process.
+
+### 12/5/23 - Segmentation script was missing an "else". Should be working as intended now.
 
 ### 12/4/23 - A working (for my setup*) config_ft.yml file is in the tools folder if anyone needs a reference. 
 
