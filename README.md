@@ -17,25 +17,29 @@ The scripts are compatible with WSL2 and Linux. Windows requires additional depe
 ### Environment Setup
 
 1. Install conda and activate environment with Python 3.10:
-- conda create --name dataset python==3.10
-- conda activate dataset
+    - conda create --name dataset python==3.10
+    - conda activate dataset
+
 
 ## Install Pytorch
-- pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 -U
+
+    - pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 -U
+
 
 ## Install whisperx/phonemize and segmentation packages
-- pip install git+https://github.com/m-bain/whisperx.git
-- pip install phonemizer pydub
+
+    - pip install git+https://github.com/m-bain/whisperx.git
+    - pip install phonemizer pydub
 
 
 ### Data Preparation
 
 1. Place a single 24khz .wav file in the /StyleGuide/makeDataset folder.
 2. Run the whisperx command on the wav file:
-- whisperx /StyleGuide/makeDataset/wavfile.wav --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H
-    - (Run this on the command line. If your GPU cant handle it there are other models you can use besides large-v2)
-
+    - whisperx /StyleGuide/makeDataset/wavfile.wav --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H
+        - (Run this on the command line. If your GPU cant handle it there are other models you can use besides large-v2)
 3. The above command will generate a set of transcriptions. Save the resulting .json file.
+
 
 ### Segmentation and Transcription
 
@@ -45,6 +49,7 @@ The scripts are compatible with WSL2 and Linux. Windows requires additional depe
 
 The above steps will generate a set of segmented audio files, a folder of bad audio it didn't like, and an output.txt file.
 
+
 ### Phonemization
 
 1. Open phonemized.py and fill out the file paths.
@@ -53,15 +58,16 @@ The above steps will generate a set of segmented audio files, a folder of bad au
 
 At this point, you should have everything you need to fine-tune.
 
+
 ## Fine-Tuning with StyleTTS2
 
 1. Clone the StyleTTS2 repository and navigate to its directory:
-- git clone https://github.com/yl4579/StyleTTS2.git
+    - git clone https://github.com/yl4579/StyleTTS2.git
 
 2. Install the required packages:
-- cd StyleTTS2
-- pip install -r requirements.txt
-- sudo apt-get install espeak-ng
+    - cd StyleTTS2
+    - pip install -r requirements.txt
+    - sudo apt-get install espeak-ng
 
 3. Prepare the data and model:
     - Clear the wavs folder in the data directory and replace with your segmented wav files.
