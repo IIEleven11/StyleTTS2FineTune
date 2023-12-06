@@ -1,6 +1,5 @@
 ## the WAV2VEC2_ASR_LARGE_LV60K_960H model was trained on a 16khz dataset. But whisperx will also work with your 24khz audio. I've been playing around with it, will update if I get better results.
 
-kHz for the StyleTTS2 fine tuning. 
 
 import json
 from pydub import AudioSegment
@@ -28,8 +27,8 @@ with open('/StyleGuide/makeDataset/trainingdata/output.txt', 'w') as out_file: #
         audio_segment = audio[start_time:end_time]
         filename = f'segment_{i}.wav'
 
-        # Check between 1.5 and 11.6 seconds (converted to milliseconds) You can play with these if you want
-        if 1500 <= duration <= 11600:
+        
+        if 1500 <= duration <= 11600:  # Check between 1.5 and 11.6 seconds (converted to milliseconds) You can play with these if you want
             audio_segment.export(os.path.join(output_dir, filename), format='wav')
             out_file.write(f'{filename}|{segment["text"]}|1\n')
         else:
