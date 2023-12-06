@@ -1,19 +1,26 @@
-This repo serves the purpose of preparing a dataset and then the execution of the fine tuning using the StyleTTS2 process.
+# StyleTTS2 Fine-Tuning Guide
 
-### 12/5/23 - Segmentation script was missing an "else". Should be working as intended now.
+This repository provides a guide on how to prepare a dataset and execute fine-tuning using the StyleTTS2 process.
 
-### 12/4/23 - A working (for my setup*) config_ft.yml file is in the tools folder if anyone needs a reference. 
+## Changelog
 
-### 12/2/23 Rewrote Segmentation and Transcription
+- **12/5/23**: Fixed a missing "else" in the Segmentation script.
+- **12/4/23**: A working config_ft.yml file is available in the tools folder.
+- **12/2/23**: Rewrote Segmentation and Transcription scripts.
 
-This works on WSL2 and Linux. Windows requires a bunch of other stuff, probably not worth it.
+## Compatibility
 
-## Install conda/activate environment with python 3.10
+The scripts are compatible with WSL2 and Linux. Windows requires additional dependencies and might not be worth the effort.
 
+## Setup
+
+### Environment Setup
+
+1. Install conda and activate environment with Python 3.10:
 - conda create --name dataset python==3.10
 - conda activate dataset
 
-## Install this version of Pytorch
+## Install Pytorch
 - pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 -U
 
 ## Install whisperx/phonemize and segmentation packages
@@ -21,46 +28,51 @@ This works on WSL2 and Linux. Windows requires a bunch of other stuff, probably 
 - pip install phonemizer pydub
 
 
-# You need a single 24khz .wav file. Put this file in the /StyleGuide/makeDataset folder.
+### Data Preparation
 
+1. Place a single 24khz .wav file in the /StyleGuide/makeDataset folder.
+2. Run the whisperx command on the wav file:
 - whisperx /StyleGuide/makeDataset/wavfile.wav --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H
     - (Run this on the command line. If your GPU cant handle it there are other models you can use besides large-v2)
 
-  This will give you a set of transcriptions. We want the .json.
+3. The above command will generate a set of transcriptions. Save the resulting .json file.
 
-# Segmentation and transcription
+### Segmentation and Transcription
 
-- cd into the tools directory StyleGuide/makeDataset/tools
-- Open whispersegmenter.py and fill out all the file paths
-- run whispersegmenter.py
+1. Navigate to the tools directory:
+2. Open whispersegmenter.py and fill out all the file paths.
+3. Run the segmentation script:
 
-This will give you a path full of segmented audio files, a folder of bad audio it didnt like, and an output.txt
+The above steps will generate a set of segmented audio files, a folder of bad audio it didn't like, and an output.txt file.
 
-# Phonemization
+### Phonemization
 
-- I split these processess up so you can check the output.txt as it is in english. Make sure segmentation went alright and punctuation was handled.
-- open phonemized.py
-- Fill out the file paths.
+1. Open phonemized.py and fill out the file paths.
+2. Run the script.
+3. This script will create the train_data.txt and val_list.txt files.
 
-  This script will create the train_data.txt and val_list.txt. You should now have everything you need to fine tune.
+At this point, you should have everything you need to fine-tune.
 
-# Fine Tuning with StyleTTS2
+## Fine-Tuning with StyleTTS2
 
+1. Clone the StyleTTS2 repository and navigate to its directory:
 - git clone https://github.com/yl4579/StyleTTS2.git
+
+2. Install the required packages:
 - cd StyleTTS2
 - pip install -r requirements.txt
 - sudo apt-get install espeak-ng
 
-- in the StyleTTS2 data folder youll see a wavs folder, delete the contents and put in your segmented wav files.
-- delete the val_list and train_list files in the Data folder and replace with yours. Keep the OOD_list.txt file you'll use it.
-- In the Configs folder you'll see a config_ft.yml open it. Edit any parameters you need. Paying attention to batch and max_len. These two are going to control how much ram is used. Its a heavy process. Drop batch size to favor max_len if you can. Supposedly a max_len of 800 provides great results but requires a lot of ram. I was running a batch size of 2 max_len of 500 on an A6000 48gb VRAM. I couldn't squeeze out more max_len. 350 epochs took 3 days with a 56 minute dataset.
+3. Prepare the data and model:
+    - Clear the wavs folder in the data directory and replace with your segmented wav files.
+    - Replace the val_list and train_list files in the Data folder with yours. Keep the OOD_list.txt file.
+    - Adjust the parameters in the config_ft.yml file in the Configs folder according to your needs.
 
-- you will need to download this model clone https://huggingface.co/yl4579/StyleTTS2-LibriTTS
-    - Create a folder named Models at /StyleTTS2/Models
-    - Create a folder named LibriTTS at /StyleTTS2/Models/LibriTTS     
-    - put epochs_2nd_00020.pth and its config.yml in here /StyleTTS2/Models/LibriTTS/epochs_2nd_00020.pth & /StyleTTS2/Models/LibriTTS/config.yml
+4. Download the [StyleTTS2-LibriTTS model](https://huggingface.co/yl4579/StyleTTS2-LibriTTS) and place it in the Models/LibriTTS directory.
 
-# Run
+## Run
+
+Finally, you can start the fine-tuning process with the following command:
 accelerate launch --mixed_precision=fp16 --num_processes=1 train_finetune_accelerate.py --config_path ./Configs/config_ft.yml
 
   
