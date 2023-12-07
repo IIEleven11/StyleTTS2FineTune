@@ -4,6 +4,7 @@ This repository provides a guide on how to prepare a dataset and execute fine-tu
 
 ## Changelog
 
+- **12/6/23**: I noticed segmentation from the whisperx .json was unacceptable. I created a segmentation script that uses the .srt file that the whisperx command generates. From what I can tell this is significantly more accurate.
 - **12/5/23**: Fixed a missing "else" in the Segmentation script.
 - **12/4/23**: A working config_ft.yml file is available in the tools folder.
 - **12/2/23**: Rewrote Segmentation and Transcription scripts.
@@ -38,16 +39,16 @@ The scripts are compatible with WSL2 and Linux. Windows requires additional depe
 2. Run the whisperx command on the wav file:
     - whisperx /StyleGuide/makeDataset/wavfile.wav --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H
         - (Run this on the command line. If your GPU cant handle it there are other models you can use besides large-v2)
-3. The above command will generate a set of transcriptions. Save the resulting .json file.
+3. The above command will generate a set of transcriptions. Save the resulting files.
 
 
 ### Segmentation and Transcription
 
 1. Navigate to the tools directory:
-2. Open whispersegmenter.py and fill out all the file paths.
+2. Open srtsegmenter.py and fill out all the file paths.
 3. Run the segmentation script:
 
-The above steps will generate a set of segmented audio files, a folder of bad audio it didn't like, and an output.txt file.
+The above steps will generate a set of segmented audio files, a folder of bad audio it didn't like, and an output.txt file. I was experimenting with phonemized srt files. You can disregard this phonemized .srt or comment that part of the code out.
 
 
 ### Phonemization
