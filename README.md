@@ -79,6 +79,7 @@ At this point, you should have everything you need to fine-tune.
 ## Run
 
 Finally, you can start the fine-tuning process with the following command:
-accelerate launch --mixed_precision=fp16 --num_processes=1 train_finetune_accelerate.py --config_path ./Configs/config_ft.yml
+
+- accelerate launch --mixed_precision=fp16 --num_processes=1 train_finetune_accelerate.py --config_path ./Configs/config_ft.yml
 
   
