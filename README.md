@@ -54,7 +54,7 @@ The above steps will generate a set of segmented audio files, a folder of bad au
 
 1. Open phonemized.py and fill out the file paths.
 2. Run the script.
-3. This script will create the train_data.txt and val_list.txt files.
+3. This script will create the train_list.txt and val_list.txt files.
 
 At this point, you should have everything you need to fine-tune.
 
