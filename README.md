@@ -48,8 +48,7 @@ The scripts are compatible with WSL2 and Linux. Windows requires additional depe
 2. Open srtsegmenter.py and fill out all the file paths.
 3. Run the segmentation script:
 
-The above steps will generate a set of segmented audio files, a folder of bad audio it didn't like, and an output.txt file. I was experimenting with phonemized srt files. You can disregard this phonemized .srt or comment that part of the code out.
-
+The above steps will generate a set of segmented audio files, a folder of bad audio it didn't like, and an output.txt file.
 
 ### Phonemization
 
