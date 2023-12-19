@@ -58,6 +58,9 @@ The above steps will generate a set of segmented audio files, a folder of bad au
 2. Run the script.
 3. This script will create the train_list.txt and val_list.txt files.
 
+- OOD_list.txt comes from the LibriTTS dataset. The following are some things to consider taken from this write up https://github.com/yl4579/StyleTTS2/discussions/81
+
+1. 
 At this point, you should have everything you need to fine-tune.
 
 
