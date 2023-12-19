@@ -58,10 +58,16 @@ The above steps will generate a set of segmented audio files, a folder of bad au
 2. Run the script.
 3. This script will create the train_list.txt and val_list.txt files.
 
-- OOD_list.txt comes from the LibriTTS dataset. The following are some things to consider taken from this write up https://github.com/yl4579/StyleTTS2/discussions/81
+- OOD_list.txt comes from the LibriTTS dataset. The following are some things to consider taken from the notes at https://github.com/yl4579/StyleTTS2/discussions/81. There is a lot of good information there, I suggest looking it over.
 
-1. 
-At this point, you should have everything you need to fine-tune.
+
+1. The LibriTTS dataset has poor punctuation and a mismatch of spoken/unspoken pauses with the transcripts. This is a common oversight in many datasets.
+
+2. Also it lacks variety of punctuation. In the field, you may encounter texts with creative use of dashes, pauses and combination of quotes and punctuation. LibriTTS lacks those cases. But the model can learn these!
+
+3. Additionally, LibriTTS has stray quotes in some texts, or begins a sentence with a quote. These things reduce quality a little (or a lot, sometimes). You will want to filter those out. 
+
+- At this point, you should have everything you need to fine-tune.
 
 
 ## Fine-Tuning with StyleTTS2
