@@ -2,7 +2,7 @@
 
 This repository provides a guide on how to prepare a dataset and execute fine-tuning using the StyleTTS2 process. https://github.com/yl4579/StyleTTS2
 
-- A gradio webui will be finished soon.
+- A ~gradio webui~ text generation webui extension providing TTS with your fine tuned model will be finished soon.
 
 ## Changelog
 
@@ -66,6 +66,8 @@ The above steps will generate a set of segmented audio files, a folder of bad au
 2. Also it lacks variety of punctuation. In the field, you may encounter texts with creative use of dashes, pauses and combination of quotes and punctuation. LibriTTS lacks those cases. But the model can learn these!
 
 3. Additionally, LibriTTS has stray quotes in some texts, or begins a sentence with a quote. These things reduce quality a little (or a lot, sometimes). You will want to filter those out. 
+
+4. Creating your own ODD_list.txt is an option. I need to play around with it more, the only real requirements should be good punctuation and that it contains text the model has not seen. I'm not sure what the ideal size of this list should be though. 
 
 - At this point, you should have everything you need to fine-tune.
 
