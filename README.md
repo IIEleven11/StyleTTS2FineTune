@@ -35,6 +35,9 @@ The scripts are compatible with WSL2 and Linux. Windows requires additional depe
     - pip install git+https://github.com/m-bain/whisperx.git
     - pip install phonemizer pydub
 
+## Instal TQDM progress bar
+
+    - pip install tqdm
 
 ### Data Preparation
 
