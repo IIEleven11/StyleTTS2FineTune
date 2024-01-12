@@ -11,15 +11,15 @@ filenames = []
 transcriptions = []
 speakers = []
 phonemized_lines = []
-for line in lines:
+for line in lines:  # Split filenames, text and speaker without phonemizing. Prevents memory protection error.
     filename, transcription, speaker = line.strip().split('|')
     filenames.append(filename)
     transcriptions.append(transcription)
     speakers.append(speaker)
 
-phonemized = phonemize(transcriptions, language="en-us", backend='espeak')
+phonemized = phonemize(transcriptions, language="en-us", backend='espeak')  # Phonemize all text in one go to avoid triggering the memory protections error
 
-for i in tqdm(range(len(filenames))):
+for i in tqdm(range(len(filenames))):  # Build the expected train_list
     phonemized_lines.append((filenames[i], f'{filenames[i]}|{phonemized[i]}|{speakers[i]}\n'))
 
 # Sort
