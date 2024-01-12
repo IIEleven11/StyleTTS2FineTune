@@ -6,6 +6,7 @@ This repository provides a guide on how to prepare a dataset and execute fine-tu
 
 ## Changelog
 
+- **1/12/2024**: Added the ability to work with multiple SRT and Audio files at one time for large datasets or blended voices.
 - **12/6/23**: I noticed segmentation from the whisperx .json was unacceptable. I created a segmentation script that uses the .srt file that the whisperx command generates. From what I can tell this is significantly more accurate. This could be dataset specific. Use the json segmenter if needed.
 - **12/5/23**: Fixed a missing "else" in the Segmentation script.
 - **12/4/23**: A working config_ft.yml file is available in the tools folder.
@@ -37,26 +38,31 @@ The scripts are compatible with WSL2 and Linux. Windows requires additional depe
 
 ### Data Preparation
 
-1. Place a single 24khz .wav file in the /StyleGuide/makeDataset folder.
-2. Run the whisperx command on the wav file:
-    - whisperx /StyleGuide/makeDataset/wavfile.wav --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H
-        - (Run this on the command line. If your GPU cant handle it there are other models you can use besides large-v2)
-3. The above command will generate a set of transcriptions. Save the resulting files.
+1. Change directory to where you have unpacked StyleTTSFineTune (You should see the makeDataset folder)
+2. To make base directories you can either create the following folders...
+- audio
+- srt
+- badAudio
+- segmentedAudio
+- or run
+  - python makeDataset/tools/srtsegmenter.py
+3. Add WAV audio files to the audio directory (remove special characters, brackets, parenthesis to prevent issues)
+4. Change directory to the srt folder
+5. Run the following command to generate srt files for all files in the audio folder
+   - for i in ../audio/*.wav; do whisperx "$i" --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H; done
 
 
 ### Segmentation and Transcription
 
-1. Navigate to the tools directory:
-2. Open srtsegmenter.py and fill out all the file paths.
-3. Run the segmentation script:
+1. Navigate to the main directory (You should see the folder makeDataset)
+2. Run the segmentation script (python makeDataset/tools/srtsegmenter.py:
 
 The above steps will generate a set of segmented audio files, a folder of bad audio it didn't like, and an output.txt file. I have it set to throw out segmemts under one second and over 11.6 seconds. You can adjust this to varying degrees. 
 
 ### Phonemization
 
-1. Open phonemized.py and fill out the file paths.
-2. Run the script.
-3. This script will create the train_list.txt and val_list.txt files.
+1. Run the script (python makeDataset/tools/phonemized.py.
+2. This script will create the train_list.txt and val_list.txt files.
 
 - OOD_list.txt comes from the LibriTTS dataset. The following are some things to consider taken from the notes at https://github.com/yl4579/StyleTTS2/discussions/81. There is a lot of good information there, I suggest looking it over.
 
