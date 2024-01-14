@@ -13,8 +13,8 @@ audio_dir = './audio/'
 os.makedirs(output_dir, exist_ok=True)
 os.makedirs(bad_audio_dir, exist_ok=True)
 os.makedirs(srt_dir, exist_ok=True)
-os.makedirs(audio_dir, exists_ok=True)
-os.makedirs('./trainingdata', exists_ok=True)
+os.makedirs(audio_dir, exist_ok=True)
+os.makedirs('./trainingdata', exist_ok=True)
 
 srt_list = glob.glob("./srt/*.srt")  # Get a list of all srt files
 
