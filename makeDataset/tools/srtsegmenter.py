@@ -7,7 +7,7 @@ from tqdm import tqdm
 
 output_dir = './segmentedAudio/'   # path to where you want the segmented audio to go
 bad_audio_dir = './badAudio/'  # path to where you want the bad audio to go
-srt_directory = './srt/'
+srt_dir = './srt/'
 audio_dir = './audio/'
 
 os.makedirs(output_dir, exist_ok=True)
