@@ -6,7 +6,7 @@ This repository provides a guide on how to prepare a dataset and execute fine-tu
 
 ## Changelog
 
-- **1/12/2024**: Added the ability to work with multiple SRT and Audio files at one time for large datasets or blended voices. -@78Alpha
+- **1/12/2024**: Added the ability to work with multiple SRT and Audio files at one time for large datasets or blended voices. - @78Alpha
 - **12/6/23**: I noticed segmentation from the whisperx .json was unacceptable. I created a segmentation script that uses the .srt file that the whisperx command generates. From what I can tell this is significantly more accurate. This could be dataset specific. Use the json segmenter if needed.
 - **12/5/23**: Fixed a missing "else" in the Segmentation script.
 - **12/4/23**: A working config_ft.yml file is available in the tools folder.
