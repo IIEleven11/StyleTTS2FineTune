@@ -5,8 +5,8 @@ from phonemizer import phonemize
 import glob
 from tqdm import tqdm
 
-output_dir = './segmentedAudio/'   # path to where you want the segmented audio to go
-bad_audio_dir = './badAudio/'  # path to where you want the bad audio to go
+output_dir = './segmentedAudio/'   # path to where you want the segmented audio to go. Edit: Script should make these for you now
+bad_audio_dir = './badAudio/' # path to where you want the bad audio to go. Edit: Script should make these for you now
 srt_dir = './srt/'
 audio_dir = './audio/'
 
@@ -16,13 +16,10 @@ os.makedirs(srt_dir, exist_ok=True)
 os.makedirs(audio_dir, exist_ok=True)
 os.makedirs('./trainingdata', exist_ok=True)
 
-srt_list = glob.glob("./srt/*.srt")  # Get a list of all srt files
+srt_list = glob.glob("./srt/*.srt") # Get a list of all srt files
+audio_list = glob.glob("./audio/*.wav") # Get a list of all audio files
 
-audio_list = glob.glob("./audio/*.wav")  # Get a list of all audio files
-
-if len(srt_list) > 0 and len(audio_list) > 0:
-    pass
-else:
+if len(srt_list) == 0 or len(audio_list) == 0:
     raise Exception(f"You need to have at least 1 srt file and 1 audio file, you have {len(srt_list)} srt and {len(audio_list)} audio files!")
 
 print(f"SRT Files: {len(srt_list)}")
