@@ -5,8 +5,8 @@ from phonemizer import phonemize
 import glob
 from tqdm import tqdm
 
-output_dir = './segmentedAudio/'   # path to where you want the segmented audio to go. Edit: Script should make these for you now
-bad_audio_dir = './badAudio/' # path to where you want the bad audio to go. Edit: Script should make these for you now
+output_dir = './segmentedAudio/'   # path to where you want the segmented audio to go
+bad_audio_dir = './badAudio/' # path to where you want the bad audio to go
 srt_dir = './srt/'
 audio_dir = './audio/'
 
@@ -32,14 +32,14 @@ for sub_file in tqdm(srt_list):  # Iterate over all srt files
         for i, sub in enumerate(subs):
 
             start_time = (sub.start.minutes * 60 + sub.start.seconds) * 1000 + sub.start.milliseconds
-            end_time = (sub.end.minutes * 60 + sub.end.seconds) * 1000 + sub.end.milliseconds
+            end_time = (sub.end.minutes * 60 + sub.end.seconds) * 1000 + sub.end.milliseconds + 600  # Added 600ms to the end_time. This helps the segmenter from cutting too early. Adjust as needed
 
             audio_segment = audio[start_time:end_time]
 
             duration = len(audio_segment)
 
-            filename = f'{audio_name}_{i}.wav'
-            if 1000 <= duration <= 11600: # This part throws out audio segments under 1 second and over 11.6 seconds
+            filename = f'{audio_name[:-4]}_{i}.wav'
+            if 1500 <= duration <= 12000: # This part throws out audio segments under 1.5 second and over 12 seconds. Adjust as needed
                 audio_segment.export(os.path.join(output_dir, filename), format='wav')
                 out_file.write(f'{filename}|{sub.text}|1\n')
             else:

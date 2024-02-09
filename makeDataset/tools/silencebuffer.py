@@ -13,10 +13,9 @@ chunks = split_on_silence(audio,
 
 silence_chunk = AudioSegment.silent(duration=740)  # amount of silence you want to add in milliseconds
 
-
 new_audio = AudioSegment.empty()
 for chunk in chunks:
     new_audio += chunk + silence_chunk 
 
 
-new_audio.export("modified_file.wav", format="wav")
+new_audio.export("silence_added_audio.wav", format="wav")
