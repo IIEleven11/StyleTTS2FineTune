@@ -2,10 +2,9 @@
 
 This repository provides a guide on how to prepare a dataset and execute fine-tuning using the StyleTTS2 process. https://github.com/yl4579/StyleTTS2
 
-- A ~gradio webui~ text generation webui extension providing TTS with your fine tuned model will be finished soon.
-
 ## Changelog
 
+- **2/08/2024**: Added a script that adds a "silence buffer" within an audio file. This allows a larger margin of error during segmentation. Edited srtsegmenter.py, specifically the "end_time" variable now has to wait 600ms before it can make a cut. This combined with the silence buffer can help combat early segmentation. It was highly effective once I tuned the parameters correctly.
 - **1/26/2024**: Updated Readme for clarity and specifying seperate windows and linux whisperx commands.
 - **1/12/2024**: Added the ability to work with multiple SRT and Audio files at one time for large datasets or blended voices. - @78Alpha
 - **12/6/23**: I noticed segmentation from the whisperx .json was unacceptable. I created a segmentation script that uses the .srt file that the whisperx command generates. From what I can tell this is significantly more accurate. This could be dataset specific. Use the json segmenter if needed.
@@ -41,11 +40,12 @@ The scripts are compatible with WSL2 and Linux. Windows requires additional depe
 ### Data Preparation
 
 1. Change directory to where you have unpacked StyleTTSFineTune (You should see the makeDataset folder)
-2. To make base directories you can run segmenter script. It will create the folders.
+3. To make base directories you can run segmenter script. It will create the folders.
 
    1. run python srtsegmenter.py
-3. Add WAV audio file/s to the audio directory (remove special characters, brackets, parenthesis to prevent issues)
-4. Run the following command to generate srt files for all files in the audio folder:
+4. Add WAV audio file/s to the audio directory (remove special characters, brackets, parenthesis to prevent issues)
+5. **** This step isnt mandatory **** for the training process. You can run whisperx and segmentation without adding silence. If you do want to add silence then silencebuffer.py within the tools folder will go over your audio file, find the silent portions between sentences/breaks in speech, and add a specific length of silence to them. This could in theory provide a more accurate cut during the segmentation process. You MUST adjust the parameters within the script to fit your data.
+6. Run the following command to generate srt files for all files in the audio folder:
 
    - Linux - for i in ../audio/*.wav; do whisperx "$i" --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H; done
    - Windows - in a powershell terminal copy and paste the following after verifying path to audio folder:
