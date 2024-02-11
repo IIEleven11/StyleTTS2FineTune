@@ -41,13 +41,16 @@ max_allowed_gap = 2 * buffer_time  # maximum gap between subtitles that the scri
 
 '''explanation of the above 2 variables and following code block:
 
-I noticed that dataset quality really suffers from poor cuts. Usually because it didnt let the speaker when ending a sentence we usually dont stop all sound, 
+I noticed that dataset quality really suffers from poor cuts. Usually because it didnt let the speaker fully end a sentence or word. we usually dont stop all sound right away, 
 it should trail off.
 So I create a buffer zone around the subtitle to provide more room for error.
 The script iterates through each subtitle and calculates the gap to the next subtitle.
 if the gap is greater than max_allowed_gap, the script adds buffer_time to the current subtitle's end time to ensure there is enough
 silence before the next spoken word begins.
 The only things you should adjust in this script is the buffer_time variable, max_allowed_gap, and the duration range in the last if statement.
+
+The process I went through was to adjust buffer_time then run the script, listen to your segments in order. If you hear overlapping, artifacts between clips, and or cut off speech then adjust buffer_time. 
+I left the values I ended up using in the script. They may work as default for you, they may not.
 '''
 
 
