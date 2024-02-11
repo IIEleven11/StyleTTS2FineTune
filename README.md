@@ -45,7 +45,7 @@ The scripts are compatible with WSL2 and Linux. Windows requires additional depe
 
    1. run python srtsegmenter.py
 3. Add WAV audio file/s to the audio directory (remove special characters, brackets, parenthesis to prevent issues)
-4. **** This step isnt mandatory **** for the training process. You can run whisperx and segmentation without adding silence. If you do want to add silence then silencebuffer.py within the tools folder will go over your audio file, find the silent portions between sentences/breaks in speech, and add a specific length of silence to them. This could in theory provide a more accurate cut during the segmentation process. You MUST adjust the parameters within the script to fit your data.
+4. **** This step isnt mandatory **** for the training process. You can run whisperx and segmentation without adding silence. If you do want to add silence then silencebuffer.py within the tools folder will go over your audio file, find the silent portions between sentences/breaks in speech, and add a specific length of silence to them. This could in theory provide a more accurate cut during the segmentation process. You MUST adjust the parameters within the script to fit your data. I left the values that worked for my dataset in the code, you can try them as defaults if you wish.
 5. Run the following command to generate srt files for all files in the audio folder:
 
    - Linux - for i in ../audio/*.wav; do whisperx "$i" --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H; done
@@ -58,8 +58,9 @@ The scripts are compatible with WSL2 and Linux. Windows requires additional depe
 ### Segmentation and Transcription
 
 1. Navigate to the main directory (You should see the folder makeDataset)
-2. Run the segmentation script (python makeDataset/tools/srtsegmenter.py
-3. Run the add_padding.py script to add a duration of silece to the end of each audio clip.
+2. Within srtsegmenter.py are some variables to adjust. buffer_time and max_allowed_gap and the final if statement has a desired range you can adjust. You can try to use the defaults I have set, they worked for me. BUT! Theres a chance this will not work out well for your dataset. The process I went through would be to adjust buffer_time then run srtsegmenter.py. Go listen to the segments in order, if they are overlapping, cut mid sentence, or have artifacts then go back and adjust buffer_time. Repeat until you get desired results.
+3. Run the segmentation script (python makeDataset/tools/srtsegmenter.py)
+4. Run the add_padding.py script to add a duration of silece to the end of each audio clip.
 
 The above steps will generate a set of segmented audio files, a folder of bad audio it didn't like, and an output.txt file. I have it set to throw out segmemts under 1 second and over 11.6 seconds. You can adjust this to varying degrees.
 
