@@ -14,8 +14,8 @@ for wav_file in wav_files:
     audio = AudioSegment.from_wav(wav_file)
 
     # duration of silence in ms
-    silence = AudioSegment.silent(duration=300) # This is length of silence to pad beginning and end of segments. You can change this to whatever you want.
-    new_audio = audio + silence
+    silence = AudioSegment.silent(duration=400) # This is length of silence to pad beginning and end of segments. You can change this to whatever you want.
+    new_audio = silence + audio + silence
     new_file_path = os.path.join(target_dir, os.path.basename(wav_file))
     new_audio.export(new_file_path, format='wav')
 
