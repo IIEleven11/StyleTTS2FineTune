@@ -36,8 +36,8 @@ for sub_file in tqdm(srt_list):  # Iterate over all srt files
         last_end_time = 0
    
    
-buffer_time = 550  # adds an amount of time in ms to that creates a buffer zone around the subtitles
-max_allowed_gap = 2 * buffer_time  # maximum gap between subtitles that the script will tolerate without adding additional buffer time.
+buffer_time = 200  # adds an amount of time in ms to that creates a buffer zone around the subtitles
+max_allowed_gap = 1.5 * buffer_time  # maximum gap between subtitles that the script will tolerate without adding additional buffer time.
 
 '''explanation of the above 2 variables and following code block:
 
