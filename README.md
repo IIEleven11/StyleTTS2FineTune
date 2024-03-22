@@ -1,6 +1,6 @@
 # StyleTTS2 Fine-Tuning Guide
 
-This repository provides a guide on how to prepare a dataset and execute fine-tuning using the StyleTTS2 process. https://github.com/yl4579/StyleTTS2
+This repository provides a guide on how to prepare a dataset and execute fine-tuning using the StyleTTS2 process. Source repository : https://github.com/yl4579/StyleTTS2
 
 ## Changelog
 
@@ -66,7 +66,8 @@ The above steps will generate a set of segmented audio files, a folder of bad au
 
 ### Phonemization
 
-1. Run the script (python makeDataset/tools/phonemized.py.
+1. Run the script (python makeDataset/tools/phonemized.py --language fr).
+The --language argument refers to an [espeak-ng voice](https://github.com/espeak-ng/espeak-ng/), such as 'fr' for French (default is en-us).
 2. This script will create the train_list.txt and val_list.txt files.
 
 - OOD_list.txt comes from the LibriTTS dataset. The following are some things to consider taken from the notes at https://github.com/yl4579/StyleTTS2/discussions/81. There is a lot of good information there, I suggest looking it over.
