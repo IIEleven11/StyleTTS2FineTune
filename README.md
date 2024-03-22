@@ -96,6 +96,7 @@ Check the espeak-ng identifier for your language [here](https://github.com/espea
    - Replace the val_list and train_list files in the Data folder with yours. Keep the OOD_list.txt file.
    - Adjust the parameters in the config_ft.yml file in the Configs folder according to your needs.
 4. Download the [StyleTTS2-LibriTTS model](https://huggingface.co/yl4579/StyleTTS2-LibriTTS) and place it in the Models/LibriTTS directory.
+5.If the language of your dataset is not English, you will need to modify the PLBER model of StyleTTS. If this is your case, refer to [this](https://huggingface.co/papercup-ai/multilingual-pl-bert) repository (don't forget to check if your language is supported).
 
 ## Run
 
