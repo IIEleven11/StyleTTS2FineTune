@@ -1,6 +1,6 @@
 # StyleTTS2 Fine-Tuning Guide
 
-This repository provides a guide on how to prepare a dataset and execute fine-tuning using the StyleTTS2 process. Source repository : https://github.com/yl4579/StyleTTS2
+This repository provides a guide on how to prepare a dataset and execute fine-tuning using the StyleTTS2 process. https://github.com/yl4579/StyleTTS2
 
 ## Changelog
 
