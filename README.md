@@ -1,6 +1,6 @@
 # StyleTTS2 Fine-Tuning Guide
 
-This repository provides a guide on how to prepare a dataset and execute fine-tuning using the StyleTTS2 process. https://github.com/yl4579/StyleTTS2
+This repository provides a guide on how to prepare a dataset and execute fine-tuning using the StyleTTS2 process. Source repository : https://github.com/yl4579/StyleTTS2
 
 ## Changelog
 
@@ -66,7 +66,9 @@ The above steps will generate a set of segmented audio files, a folder of bad au
 
 ### Phonemization
 
-1. Run the script (python makeDataset/tools/phonemized.py.
+1. Run the script (python makeDataset/tools/phonemized.py --language fr-fr).
+The --language argument refers to an [espeak-ng voice](https://github.com/espeak-ng/espeak-ng/), such as 'fr-fr' for French (default is en-us).
+Check the espeak-ng identifier for your language [here](https://github.com/espeak-ng/espeak-ng/blob/master/docs/languages.md).
 2. This script will create the train_list.txt and val_list.txt files.
 
 - OOD_list.txt comes from the LibriTTS dataset. The following are some things to consider taken from the notes at https://github.com/yl4579/StyleTTS2/discussions/81. There is a lot of good information there, I suggest looking it over.
@@ -94,6 +96,7 @@ The above steps will generate a set of segmented audio files, a folder of bad au
    - Replace the val_list and train_list files in the Data folder with yours. Keep the OOD_list.txt file.
    - Adjust the parameters in the config_ft.yml file in the Configs folder according to your needs.
 4. Download the [StyleTTS2-LibriTTS model](https://huggingface.co/yl4579/StyleTTS2-LibriTTS) and place it in the Models/LibriTTS directory.
+5. If the language of your dataset is not English, you will need to modify the PLBER model of StyleTTS. If this is your case, refer to [this](https://huggingface.co/papercup-ai/multilingual-pl-bert) repository (don't forget to check if your language is supported).
 
 ## Run
 
