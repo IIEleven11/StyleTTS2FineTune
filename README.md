@@ -66,7 +66,7 @@ The above steps will generate a set of segmented audio files, a folder of bad au
 
 ### Phonemization
 
-1. Run the script (python makeDataset/tools/phonemized.py --language fr-fr).
+1. Run the script (python makeDataset/tools/phonemized.py --language en-us).
 The --language argument refers to an [espeak-ng voice](https://github.com/espeak-ng/espeak-ng/), such as 'fr-fr' for French (default is en-us).
 Check the espeak-ng identifier for your language [here](https://github.com/espeak-ng/espeak-ng/blob/master/docs/languages.md).
 2. This script will create the train_list.txt and val_list.txt files.
