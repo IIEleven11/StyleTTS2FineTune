@@ -48,7 +48,10 @@ The scripts are compatible with WSL2 and Linux. Windows requires additional depe
 4. **** This step isnt mandatory **** for the training process. You can run whisperx and segmentation without adding silence. If you do want to add silence then silencebuffer.py within the tools folder will go over your audio file, find the silent portions between sentences/breaks in speech, and add a specific length of silence to them. This could in theory provide a more accurate cut during the segmentation process. You MUST adjust the parameters within the script to fit your data. I left the values that worked for my dataset in the code, you can try them as defaults if you wish.
 5. Run the following command to generate srt files for all files in the audio folder:
 
-   - Linux - for i in ../audio/*.wav; do whisperx "$i" --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H; done
+   - Linux -
+     ```
+     for i in ../audio/*.wav; do whisperx "$i" --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H; done
+     ```
    - Windows - in a powershell terminal copy and paste the following after verifying path to audio folder:
 
    "Get-ChildItem -Path "\StyleTTS2FineTune\\makeDataset\\tools\\audio" -Filter *.wav | ForEach-Object {whisperx $_.FullName --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H"
