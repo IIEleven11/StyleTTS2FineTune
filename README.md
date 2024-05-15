@@ -3,12 +3,12 @@
 This repository provides a guide on how to prepare a dataset and execute fine-tuning using the StyleTTS2 process. https://github.com/yl4579/StyleTTS2
 
 ## Changelog
-- **5/15/2024**: https://github.com/IIEleven11/SilenceRemover This repo is a fork of @jerryliuoft https://github.com/jerryliuoft/SilenceRemover. It's a visual representation for the location, removal, and or addition of silence within media. The original repo I forked is specific to video, so it outputs an mp4. I will modify this soon to allow for the option of either audio or video output as to more align with our use case. Using this tool and having the visual is so so valuable here. It removes a lot of the guesswork that i've been doing with the energy and decible detection. Take a look at it and throw em a star. It's a lifesaver.
-- **3/24/2024**: Phonemizer now capable of handling languages other than english. - Contributer: @Scralius
+- **5/15/2024**: https://github.com/IIEleven11/SilenceRemover This repo is a fork of [@jerryliuoft] https://github.com/jerryliuoft/SilenceRemover. It's a visual representation for the location, removal, and or addition of silence within media. The original repo I forked is specific to video, so it outputs an mp4. I will modify this soon to allow for the option of either audio or video output as to more align with our use case. Using this tool and having the visual is so so valuable here. It removes a lot of the guesswork that i've been doing with the energy and decible detection. Take a look at it and throw em a star. It's a lifesaver.
+- **3/24/2024**: Phonemizer now capable of handling languages other than english. - Contributer: [@Scralius]
 - **2/09/2024**: Implemented new buffer for subtitles. This help with the segmentation process. See the "srtsegmenter.py" for more details. Added "add_padding.py" to add a length of silence to both ends of every audio segment.
 - **2/08/2024**: Added a script that adds a "silence buffer" within an audio file. This allows a larger margin of error during segmentation. Edited srtsegmenter.py, specifically the "end_time" variable now has to wait 600ms before it can make a cut. This combined with the silence buffer can help combat early segmentation. It was highly effective once I tuned the parameters correctly.
 - **1/26/2024**: Updated Readme for clarity and specifying seperate windows and linux whisperx commands.
-- **1/12/2024**: Added the ability to work with multiple SRT and Audio files at one time for large datasets or blended voices. - Contributor:  @78Alpha
+- **1/12/2024**: Added the ability to work with multiple SRT and Audio files at one time for large datasets or blended voices. - Contributor:  [@78Alpha]
 - **12/6/23**: I noticed segmentation from the whisperx .json was unacceptable. I created a segmentation script that uses the .srt file that the whisperx command generates. From what I can tell this is significantly more accurate. This could be dataset specific. Use the json segmenter if needed.
 - **12/5/23**: Fixed a missing "else" in the Segmentation script.
 - **12/4/23**: A working config_ft.yml file is available in the tools folder.
