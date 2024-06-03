@@ -3,6 +3,7 @@
 This repository provides a guide on how to prepare a dataset and execute fine-tuning using the StyleTTS2 process. https://github.com/yl4579/StyleTTS2
 
 ## Changelog
+- **6/2/2024**: Added "with_stress" and "preserve_punctuation" to the phonemize script.
 - **5/15/2024**: https://github.com/IIEleven11/SilenceRemover This repo is a fork of [@jerryliuoft](https://github.com/jerryliuoft)'s https://github.com/jerryliuoft/SilenceRemover. It's a visual representation for the location, removal, and or addition of silence within media. The original repo I forked is specific to video, so it outputs an mp4. I will modify this soon to allow for the option of either audio or video output as to more align with our use case. It removes a lot of the guesswork that i've been doing with the energy and decible detection. I had to share it right away because it immediately saved me a ton of time. Take a look at it and throw em a star. It's a lifesaver.
 - **3/24/2024**: Phonemizer now capable of handling languages other than english. - Contributer: [@Scralius]
 - **2/09/2024**: Implemented new buffer for subtitles. This help with the segmentation process. See the "srtsegmenter.py" for more details. Added "add_padding.py" to add a length of silence to both ends of every audio segment.
