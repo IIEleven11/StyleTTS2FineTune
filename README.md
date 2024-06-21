@@ -57,7 +57,9 @@ The scripts are compatible with WSL2 and Linux. Windows requires additional depe
      ```
    - Windows - in a powershell terminal copy and paste the following after verifying path to audio folder:
 
-   "Get-ChildItem -Path "\StyleTTS2FineTune\\makeDataset\\tools\\audio" -Filter *.wav | ForEach-Object {whisperx $_.FullName --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H"
+     ```
+      Get-ChildItem -Path 'C:\path\to\wav\folder' -Filter *.wav | ForEach-Object { whisperx $_.FullName --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H }
+     ```
 
    This will generate a Whisperx .SRT file transcription of your audio. Place the srt file/s into the srt folder
 
