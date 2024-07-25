@@ -3,6 +3,7 @@
 This repository provides a guide on how to prepare a dataset and execute fine-tuning using the StyleTTS2 process. https://github.com/yl4579/StyleTTS2
 
 ## Changelog
+- **7/25/2024**: Added a specific output format (srt), condition on previous text, max line width, max line count, and segment resolution to the whisperx command. (Note: max_line_width is supposed to keep it under 250 chars. It sometimes doesn't work. If anyone can figure that out let me know)
 - **6/8/2024**: There's now a curate.ipynb notebook. Use it to analyze and prune your dataset. It will give you a few visuals and possible points of concern about your dataset. I highly highly suggest you use it. 
 - **6/2/2024**: Added "with_stress" and "preserve_punctuation" to the phonemize script.
 - **5/15/2024**: https://github.com/IIEleven11/SilenceRemover This repo is a fork of [@jerryliuoft](https://github.com/jerryliuoft)'s https://github.com/jerryliuoft/SilenceRemover. It's a visual representation for the location, removal, and or addition of silence within media. The original repo I forked is specific to video, so it outputs an mp4. I will modify this soon to allow for the option of either audio or video output as to more align with our use case. It removes a lot of the guesswork that i've been doing with the energy and decible detection. I had to share it right away because it immediately saved me a ton of time. Take a look at it and throw em a star. It's a lifesaver.
@@ -35,11 +36,7 @@ The scripts are compatible with WSL2 and Linux. Windows requires additional depe
 ## Install whisperx/phonemize and segmentation packages
 
     - pip install git+https://github.com/m-bain/whisperx.git
-    - pip install phonemizer pydub pysrt
-
-## Instal TQDM progress bar
-
-    - pip install tqdm
+    - pip install phonemizer pydub pysrt tqdm
 
 ### Data Preparation
 
@@ -53,7 +50,7 @@ The scripts are compatible with WSL2 and Linux. Windows requires additional depe
 
    - Linux -
      ```
-     for i in ../audio/*.wav; do whisperx "$i" --model large-v2 --align_model WAV2VEC2_ASR_LARGE_LV60K_960H; done
+     for i in ../audio/*.wav; do whisperx "$i" --model large-v3 --output_format srt --condition_on_previous_text True --max_line_width 250  --max_line_count 1  --segment_resolution sentence; done
      ```
    - Windows - in a powershell terminal copy and paste the following after verifying path to audio folder:
 
