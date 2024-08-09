@@ -50,7 +50,7 @@ The scripts are compatible with WSL2 and Linux. Windows requires additional depe
 
    - Linux -
      ```
-     for i in ../audio/*.wav; do whisperx "$i" --model large-v3 --output_format srt --condition_on_previous_text True --max_line_width 250  --max_line_count 1  --segment_resolution sentence; done
+     for i in ../audio/*.wav; do whisperx "$i" --model large-v3 --output_format srt --condition_on_previous_text True --max_line_width 250  --max_line_count 1  --segment_resolution sentence  --align_model WAV2VEC2_ASR_LARGE_LV60K_960H; done
      ```
    - Windows - in a powershell terminal copy and paste the following after verifying path to audio folder:
 
