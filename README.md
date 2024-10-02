@@ -1,7 +1,7 @@
 # StyleTTS2 Fine-Tuning Guide
 
 This repository provides a guide on how to prepare a dataset and execute fine-tuning using the StyleTTS2 process. https://github.com/yl4579/StyleTTS2
-
+### If you still need to curate your dataset. You might want to checkout https://github.com/IIEleven11/Automatic-Audio-Dataset-Maker. At the end you'll need to convert it from .csv to STTSv2's .txt format (train_list.txt and val_list.txt) but that should be easy.
 ## Changelog
 - **7/25/2024**: Added a specific output format (srt), condition on previous text, max line width, max line count, and segment resolution to the whisperx command. (Note: max_line_width is supposed to keep it under 250 chars. It sometimes doesn't work. If anyone can figure that out let me know)
 - **6/8/2024**: There's now a curate.ipynb notebook. Use it to analyze and prune your dataset. It will give you a few visuals and possible points of concern about your dataset. I highly highly suggest you use it. 
