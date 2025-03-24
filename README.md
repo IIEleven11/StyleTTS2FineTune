@@ -35,8 +35,9 @@ The scripts are compatible with WSL2 and Linux. Windows requires additional depe
 
 ## Install whisperx/phonemize and segmentation packages
 
-    pip install git+https://github.com/m-bain/whisperx.git
-    pip install phonemizer pydub pysrt tqdm
+   - pip install git+https://github.com/m-bain/whisperx.git
+    
+   - pip install phonemizer pydub pysrt tqdm
 
 ### Data Preparation
 
