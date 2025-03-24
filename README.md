@@ -35,18 +35,22 @@ The scripts are compatible with WSL2 and Linux. Windows requires additional depe
 
 ## Install whisperx/phonemize and segmentation packages
 
-   - pip install git+https://github.com/m-bain/whisperx.git
+   1. ``` pip install git+https://github.com/m-bain/whisperx.git ```
     
-   - pip install phonemizer pydub pysrt tqdm
+   2. ``` pip install phonemizer pydub pysrt tqdm ```
 
 ### Data Preparation
 
 1. Change directory to where you have unpacked StyleTTSFineTune (You should see the makeDataset folder)
 2. To make base directories you can run segmenter script. It will create the folders.
 
-   1. run python srtsegmenter.py
+   1. run
+      - ``` python srtsegmenter.py ```
+
 3. Add WAV audio file/s to the audio directory (remove special characters, brackets, parenthesis to prevent issues)
+
 4. **** This step isnt mandatory **** for the training process. You can run whisperx and segmentation without adding silence. If you do want to add silence then silencebuffer.py within the tools folder will go over your audio file, find the silent portions between sentences/breaks in speech, and add a specific length of silence to them. This could in theory provide a more accurate cut during the segmentation process. You MUST adjust the parameters within the script to fit your data. I left the values that worked for my dataset in the code, you can try them as defaults if you wish.
+
 5. Run the following command to generate srt files for all files in the audio folder:
 
    - Linux -
