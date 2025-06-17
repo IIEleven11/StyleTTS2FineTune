@@ -1,21 +1,15 @@
 # StyleTTS2 Fine-Tuning Guide
 
+
+## If you want to train/finetune your model on a cloud instance then check out this - [StyleTTS2 Cloud Instance](https://dash.simplepod.ai/account/explore/55/ref-eleven/rrit_HeJcKTczE4o9).
+- Make an account
+- Use this template with the RTX Pro 6000 Blackwell GPU. It has 96gb of VRAM.
+- I pre-installed all the packages/environment so you will just need to swap your wavs folder in and your train_list.txt/val_list.txt then you're set and you can begin training/finetuning.
+- You could also pick the RTX 5090 but Stts2 heavily depends on VRAM. You will get better quality the higher the VRAM gets.
+
+
 This repository provides a guide on how to prepare a dataset and execute fine-tuning using the StyleTTS2 process. https://github.com/yl4579/StyleTTS2
 ### If you still need to curate your dataset. You might want to checkout https://github.com/IIEleven11/Automatic-Audio-Dataset-Maker. At the end you'll need to convert it from .csv to STTSv2's .txt format (train_list.txt and val_list.txt) but that should be easy.
-## Changelog
-- **7/25/2024**: Added a specific output format (srt), condition on previous text, max line width, max line count, and segment resolution to the whisperx command. (Note: max_line_width is supposed to keep it under 250 chars. It sometimes doesn't work. If anyone can figure that out let me know)
-- **6/8/2024**: There's now a curate.ipynb notebook. Use it to analyze and prune your dataset. It will give you a few visuals and possible points of concern about your dataset. I highly highly suggest you use it. 
-- **6/2/2024**: Added "with_stress" and "preserve_punctuation" to the phonemize script.
-- **5/15/2024**: https://github.com/IIEleven11/SilenceRemover This repo is a fork of [@jerryliuoft](https://github.com/jerryliuoft)'s https://github.com/jerryliuoft/SilenceRemover. It's a visual representation for the location, removal, and or addition of silence within media. The original repo I forked is specific to video, so it outputs an mp4. I will modify this soon to allow for the option of either audio or video output as to more align with our use case. It removes a lot of the guesswork that i've been doing with the energy and decible detection. I had to share it right away because it immediately saved me a ton of time. Take a look at it and throw em a star. It's a lifesaver.
-- **3/24/2024**: Phonemizer now capable of handling languages other than english. - Contributer: [@Scralius]
-- **2/09/2024**: Implemented new buffer for subtitles. This help with the segmentation process. See the "srtsegmenter.py" for more details. Added "add_padding.py" to add a length of silence to both ends of every audio segment.
-- **2/08/2024**: Added a script that adds a "silence buffer" within an audio file. This allows a larger margin of error during segmentation. Edited srtsegmenter.py, specifically the "end_time" variable now has to wait 600ms before it can make a cut. This combined with the silence buffer can help combat early segmentation. It was highly effective once I tuned the parameters correctly.
-- **1/26/2024**: Updated Readme for clarity and specifying seperate windows and linux whisperx commands.
-- **1/12/2024**: Added the ability to work with multiple SRT and Audio files at one time for large datasets or blended voices. - Contributor:  [@78Alpha]
-- **12/6/23**: I noticed segmentation from the whisperx .json was unacceptable. I created a segmentation script that uses the .srt file that the whisperx command generates. From what I can tell this is significantly more accurate. This could be dataset specific. Use the json segmenter if needed.
-- **12/5/23**: Fixed a missing "else" in the Segmentation script.
-- **12/4/23**: A working config_ft.yml file is available in the tools folder.
-- **12/2/23**: Rewrote Segmentation and Transcription scripts.
 
 ## Compatibility
 
@@ -115,3 +109,19 @@ Check the espeak-ng identifier for your language [here](https://github.com/espea
 Finally, you can start the fine-tuning process with the following command:
 
 - accelerate launch --mixed_precision=fp16 --num_processes=1 train_finetune_accelerate.py --config_path ./Configs/config_ft.yml
+
+## Changelog
+- **7/25/2024**: Added a specific output format (srt), condition on previous text, max line width, max line count, and segment resolution to the whisperx command. (Note: max_line_width is supposed to keep it under 250 chars. It sometimes doesn't work. If anyone can figure that out let me know)
+- **6/8/2024**: There's now a curate.ipynb notebook. Use it to analyze and prune your dataset. It will give you a few visuals and possible points of concern about your dataset. I highly highly suggest you use it. 
+- **6/2/2024**: Added "with_stress" and "preserve_punctuation" to the phonemize script.
+- **5/15/2024**: https://github.com/IIEleven11/SilenceRemover This repo is a fork of [@jerryliuoft](https://github.com/jerryliuoft)'s https://github.com/jerryliuoft/SilenceRemover. It's a visual representation for the location, removal, and or addition of silence within media. The original repo I forked is specific to video, so it outputs an mp4. I will modify this soon to allow for the option of either audio or video output as to more align with our use case. It removes a lot of the guesswork that i've been doing with the energy and decible detection. I had to share it right away because it immediately saved me a ton of time. Take a look at it and throw em a star. It's a lifesaver.
+- **3/24/2024**: Phonemizer now capable of handling languages other than english. - Contributer: [@Scralius]
+- **2/09/2024**: Implemented new buffer for subtitles. This help with the segmentation process. See the "srtsegmenter.py" for more details. Added "add_padding.py" to add a length of silence to both ends of every audio segment.
+- **2/08/2024**: Added a script that adds a "silence buffer" within an audio file. This allows a larger margin of error during segmentation. Edited srtsegmenter.py, specifically the "end_time" variable now has to wait 600ms before it can make a cut. This combined with the silence buffer can help combat early segmentation. It was highly effective once I tuned the parameters correctly.
+- **1/26/2024**: Updated Readme for clarity and specifying seperate windows and linux whisperx commands.
+- **1/12/2024**: Added the ability to work with multiple SRT and Audio files at one time for large datasets or blended voices. - Contributor:  [@78Alpha]
+- **12/6/23**: I noticed segmentation from the whisperx .json was unacceptable. I created a segmentation script that uses the .srt file that the whisperx command generates. From what I can tell this is significantly more accurate. This could be dataset specific. Use the json segmenter if needed.
+- **12/5/23**: Fixed a missing "else" in the Segmentation script.
+- **12/4/23**: A working config_ft.yml file is available in the tools folder.
+- **12/2/23**: Rewrote Segmentation and Transcription scripts.
+
